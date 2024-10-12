@@ -425,6 +425,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3401869939116907182, guid: 111479e947dd42d4aafd242e6040b086,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401869939116907182, guid: 111479e947dd42d4aafd242e6040b086,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074955092693229741, guid: 111479e947dd42d4aafd242e6040b086,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074955092693229741, guid: 111479e947dd42d4aafd242e6040b086,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074955092693229741, guid: 111479e947dd42d4aafd242e6040b086,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074955092693229741, guid: 111479e947dd42d4aafd242e6040b086,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6541233587096628508, guid: 111479e947dd42d4aafd242e6040b086,
         type: 3}
       propertyPath: m_Pivot.x
@@ -525,6 +555,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7816482897473812643, guid: 111479e947dd42d4aafd242e6040b086,
+        type: 3}
+      propertyPath: popupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

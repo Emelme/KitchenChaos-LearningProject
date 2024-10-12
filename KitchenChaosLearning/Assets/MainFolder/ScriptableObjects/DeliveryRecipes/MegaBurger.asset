@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MegaBurger
   m_EditorClassIdentifier: 
   name: Mega Burger
-  timeToCompleteRecipe: 120
+  timeToCompleteRecipe: 150
   kitchenObjectSOList:
   - {fileID: 11400000, guid: 4ead18c4b12661a46b7ec1760e8cb73d, type: 2}
   - {fileID: 11400000, guid: 629fd13f8a9247e41b357e7abcdca281, type: 2}

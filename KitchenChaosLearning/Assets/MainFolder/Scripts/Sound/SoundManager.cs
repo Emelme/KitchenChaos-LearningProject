@@ -62,6 +62,11 @@ public class SoundManager : MonoBehaviour
 		PlaySound(audioClipRefsSO.deliveryFail, position);
 	}
 
+	public void PlayeCountdownSound()
+	{
+		PlaySound(audioClipRefsSO.warning, Vector3.zero);
+	}
+
 
 	private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
 	{

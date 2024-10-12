@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
         if (state == State.WaitingToStart)
         {
 			state = State.CountdownToStart;
-        }
+			OnCountdownToStartStarted?.Invoke();
+		}
     }
 
 	private void GameInput_OnPauseAction()
@@ -79,9 +80,7 @@ public class GameManager : MonoBehaviour
 			case State.WaitingToStart:
 				break;
 			case State.CountdownToStart:
-
-				OnCountdownToStartStarted?.Invoke();
-
+				
 				countdownToStartTime -= Time.deltaTime;
 
 				if (countdownToStartTime <= 0f)
