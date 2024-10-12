@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameStartCountdownUI : MonoBehaviour
 {
-	[SerializeField] private TextMeshProUGUI coundownText;
+	[SerializeField] private TextMeshProUGUI countdownText;
 	[SerializeField] private Animator animator;
 
 	private const string COUNTDOWN_POPUP = "countdownPopup";
@@ -36,12 +36,12 @@ public class GameStartCountdownUI : MonoBehaviour
 
 			if (timer > 0f)
 			{
-				coundownText.text = countdownNumber.ToString();
+				countdownText.text = countdownNumber.ToString();
 
 				if (countdownNumber != previousCountdownNumber)
 				{
 					animator.SetTrigger(COUNTDOWN_POPUP);
-					SoundManager.Instance.PlayeCountdownSound();
+					SoundManager.Instance.PlayCountdownSound();
 					previousCountdownNumber = countdownNumber;
 				}
 

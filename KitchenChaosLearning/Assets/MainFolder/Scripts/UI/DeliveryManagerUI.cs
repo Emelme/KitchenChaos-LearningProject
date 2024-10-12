@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DeliveryManagerUI : MonoBehaviour
 {
-	[SerializeField] private GameObject recipeTempaltesContainer;
+	[SerializeField] private GameObject recipeTemplatesContainer;
 	[SerializeField] private GameObject recipeTemplate;
 
 	private List<RecipeTemplateUI> recipeTemplateUIList;
@@ -16,23 +16,23 @@ public class DeliveryManagerUI : MonoBehaviour
 
 	private void Start()
 	{
-		DeliveryManager.Instance.OnWatingRecipeAdded += DeliveryManager_OnWatingRecipeAdded;
-		DeliveryManager.Instance.OnWatingRecipeRemoved += DeliveryManager_OnWatingRecipeRemoved;
+		DeliveryManager.Instance.OnWatingRecipeAdded += DeliveryManager_OnWaitingRecipeAdded;
+		DeliveryManager.Instance.OnWatingRecipeRemoved += DeliveryManager_OnWaitingRecipeRemoved;
 	}
 
-	private void DeliveryManager_OnWatingRecipeAdded(RecipeSO recipeSO)
+	private void DeliveryManager_OnWaitingRecipeAdded(RecipeSO recipeSO)
 	{
 		AddRecipeTemplate(recipeSO);
 	}
 
-	private void DeliveryManager_OnWatingRecipeRemoved(RecipeSO recipeSO)
+	private void DeliveryManager_OnWaitingRecipeRemoved(RecipeSO recipeSO)
 	{
 		RemoveRecipeTemplate(recipeSO);
 	}
 
 	private void AddRecipeTemplate(RecipeSO recipeSO)
 	{
-		GameObject recipeTemplateGameObject = Instantiate(recipeTemplate, recipeTempaltesContainer.transform);
+		GameObject recipeTemplateGameObject = Instantiate(recipeTemplate, recipeTemplatesContainer.transform);
 		recipeTemplateGameObject.SetActive(true);
 		RecipeTemplateUI recipeTemplateUI = recipeTemplateGameObject.GetComponent<RecipeTemplateUI>();
 		recipeTemplateUIList.Add(recipeTemplateUI);

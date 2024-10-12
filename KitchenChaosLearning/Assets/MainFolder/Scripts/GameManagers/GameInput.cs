@@ -40,7 +40,7 @@ public class GameInput : MonoBehaviour
 		playerInputAction.Enable();
 
 		playerInputAction.Player.Interact.performed += Interact_performed;
-		playerInputAction.Player.InteractAltarnate.performed += InteractAltarnate_performed;
+		playerInputAction.Player.InteractAlternate.performed += InteractAlternate_performed;
 		playerInputAction.Player.Pause.performed += Pause_performed;
 	}
 
@@ -54,7 +54,7 @@ public class GameInput : MonoBehaviour
 		OnInteractAction?.Invoke();
 	}
 
-	private void InteractAltarnate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+	private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
 	{
 		OnInteractAlternateAction?.Invoke();
 	}
@@ -66,24 +66,17 @@ public class GameInput : MonoBehaviour
 
 	public string GetBindingText(Binding binding)
 	{
-		switch (binding)
+		return binding switch
 		{
-			default: return null;
-			case Binding.MoveUp:
-				return playerInputAction.Player.Move.bindings[1].ToDisplayString();
-			case Binding.MoveDown:
-				return playerInputAction.Player.Move.bindings[2].ToDisplayString();
-			case Binding.MoveLeft:
-				return playerInputAction.Player.Move.bindings[3].ToDisplayString();
-			case Binding.MoveRight:
-				return playerInputAction.Player.Move.bindings[4].ToDisplayString();
-			case Binding.Interact:
-				return playerInputAction.Player.Interact.bindings[0].ToDisplayString();
-			case Binding.InteractAlt:
-				return playerInputAction.Player.InteractAltarnate.bindings[0].ToDisplayString();
-			case Binding.Pause:
-				return playerInputAction.Player.Pause.bindings[0].ToDisplayString();
-		}
+			Binding.MoveUp => playerInputAction.Player.Move.bindings[1].ToDisplayString(),
+			Binding.MoveDown => playerInputAction.Player.Move.bindings[2].ToDisplayString(),
+			Binding.MoveLeft => playerInputAction.Player.Move.bindings[3].ToDisplayString(),
+			Binding.MoveRight => playerInputAction.Player.Move.bindings[4].ToDisplayString(),
+			Binding.Interact => playerInputAction.Player.Interact.bindings[0].ToDisplayString(),
+			Binding.InteractAlt => playerInputAction.Player.InteractAlternate.bindings[0].ToDisplayString(),
+			Binding.Pause => playerInputAction.Player.Pause.bindings[0].ToDisplayString(),
+			_ => null,
+		};
 	}
 
 	public void RebindBinding(Binding binding, Action onActionRebound)
@@ -117,7 +110,7 @@ public class GameInput : MonoBehaviour
 				bindingIndex = 0;
 				break;
 			case Binding.InteractAlt:
-				inputAction = playerInputAction.Player.InteractAltarnate;
+				inputAction = playerInputAction.Player.InteractAlternate;
 				bindingIndex = 0;
 				break;
 			case Binding.Pause:
@@ -141,7 +134,7 @@ public class GameInput : MonoBehaviour
 	private void OnDestroy()
 	{
 		playerInputAction.Player.Interact.performed -= Interact_performed;
-		playerInputAction.Player.InteractAltarnate.performed -= InteractAltarnate_performed;
+		playerInputAction.Player.InteractAlternate.performed -= InteractAlternate_performed;
 		playerInputAction.Player.Pause.performed -= Pause_performed;
 
 		playerInputAction.Dispose();

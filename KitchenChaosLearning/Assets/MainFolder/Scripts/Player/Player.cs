@@ -61,7 +61,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 	private void HandleMovement()
 	{
 		Vector2 inputVector = gameInput.GetInputVector2Normalized();
-		Vector3 moveDirection = new Vector3(inputVector.x, 0f, inputVector.y);
+		Vector3 moveDirection = new(inputVector.x, 0f, inputVector.y);
 
 		IsWalking = moveDirection != Vector3.zero;
 
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 		// checking if you can move along a wall
 		if (!canMove)
 		{
-			Vector3 moveDirectionX = new Vector3(moveDirection.x, 0f, 0f);
+			Vector3 moveDirectionX = new(moveDirection.x, 0f, 0f);
 			canMove = moveDirection.x != 0f && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirectionX, moveDistance);
 
 			if (canMove)
@@ -89,7 +89,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 			}
 			else
 			{
-				Vector3 moveDirectionZ = new Vector3(0f, 0f, moveDirection.z);
+				Vector3 moveDirectionZ = new(0f, 0f, moveDirection.z);
 				canMove = moveDirection.z != 0f && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirectionZ, moveDistance);
 
 				if (canMove)

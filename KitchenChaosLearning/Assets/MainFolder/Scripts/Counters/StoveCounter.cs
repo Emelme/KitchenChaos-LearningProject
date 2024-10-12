@@ -10,6 +10,8 @@ public class StoveCounter : Counter
 	private FryingRecipeSO fryingRecipeSO;
 	private BurningRecipeSO burningRecipeSO;
 
+	private bool isBurning = false;
+
 	public event Action OnInteracted;
 	public event Action<float> OnStartCooking;
 	public event Action OnStopAllStoveCoroutine;
@@ -25,6 +27,7 @@ public class StoveCounter : Counter
 					if (plate.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
 					{
 						GetKitchenObject().DestroySelf();
+						isBurning = false;
 						StopAllCoroutines();
 						OnStopAllStoveCoroutine?.Invoke();
 					}
@@ -38,11 +41,13 @@ public class StoveCounter : Counter
 				if (fryingRecipeSO != null)
 				{
 					Player.Instance.GetKitchenObject().SetKitchenObjectParent(this);
+					isBurning = false;
 					StartCoroutine(StartCooking(fryingRecipeSO.FryingTime, fryingRecipeSO.output));
 				}
 				else if (burningRecipeSO != null)
 				{
 					Player.Instance.GetKitchenObject().SetKitchenObjectParent(this);
+					isBurning = true;
 					StartCoroutine(StartCooking(burningRecipeSO.burningTime, burningRecipeSO.output));
 				} 
 			}
@@ -51,6 +56,7 @@ public class StoveCounter : Counter
 		{
 			if (HasKitchenObject())
 			{
+				isBurning = false;
 				StopAllCoroutines();
 				OnStopAllStoveCoroutine?.Invoke();
 				GetKitchenObject().SetKitchenObjectParent(Player.Instance); 
@@ -60,19 +66,20 @@ public class StoveCounter : Counter
 		OnInteracted?.Invoke();
 	}
 
-	private IEnumerator StartCooking(float cookingTime, KitchenObjectSO outputKitcheObjectSO)
+	private IEnumerator StartCooking(float cookingTime, KitchenObjectSO outputKitchenObjectSO)
 	{
 		OnStartCooking?.Invoke(cookingTime);
 
 		yield return new WaitForSeconds(cookingTime);
 
 		GetKitchenObject().DestroySelf();
-		KitchenObject.CreateKitchenObject(outputKitcheObjectSO, this);
+		KitchenObject.CreateKitchenObject(outputKitchenObjectSO, this);
 
 		burningRecipeSO = FindBurningRecipeSO(GetKitchenObject().GetKitchenObjectSO());
 
 		if (burningRecipeSO != null)
 		{
+			isBurning = true;
 			StartCoroutine(StartCooking(burningRecipeSO.burningTime, burningRecipeSO.output));
 		}
 	}
@@ -102,4 +109,6 @@ public class StoveCounter : Counter
 
 		return null;
 	}
+
+	public bool IsBurning() { return isBurning; }
 }

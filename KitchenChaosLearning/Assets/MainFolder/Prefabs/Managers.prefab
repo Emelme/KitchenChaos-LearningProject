@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipeListSO: {fileID: 11400000, guid: fe3e1c21c79b5dc488e445b41365ee35, type: 2}
-  waitingRecipeSpawnTime: 10
+  waitingRecipeSpawnTime: 5
   maxWaitingRecipeAmount: 5
 --- !u!1 &5591050112859422082
 GameObject:
