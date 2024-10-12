@@ -131,4 +131,9 @@ public class DeliveryManager : MonoBehaviour
 	public List<RecipeSO> GetWaitingRecipeSOList() { return waitingRecipeSOList; }
 
 	public int GetCompletedRecipeCount() { return completedRecipeCount; }
+
+	public float GetDifficultyMultiplier()
+	{
+		return 1f - (completedRecipeCount / 100f);
+	}
 }

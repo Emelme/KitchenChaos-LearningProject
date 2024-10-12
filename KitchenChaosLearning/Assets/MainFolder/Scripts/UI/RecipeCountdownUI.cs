@@ -19,8 +19,8 @@ public class RecipeCountdownUI : MonoBehaviour
 
 	private void Start()
 	{
-		timeToCompleteRecipe = recipeTemplateUI.GetRecipeSO().timeToCompleteRecipe;
-		recipeCountdownTimer = timeToCompleteRecipe;		
+		timeToCompleteRecipe = recipeTemplateUI.GetRecipeSO().timeToCompleteRecipe * DeliveryManager.Instance.GetDifficultyMultiplier();
+		recipeCountdownTimer = timeToCompleteRecipe;
 	}
 
 	private void Update()
