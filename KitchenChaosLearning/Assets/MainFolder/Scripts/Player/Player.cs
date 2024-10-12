@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Player : MonoBehaviour, IKitchenObjectParent
+public class Player : NetworkBehaviour, IKitchenObjectParent
 {
 	public static Player Instance { get; private set; }
 
-	[SerializeField] private GameInput gameInput;
 	[SerializeField] private float moveSpeed;
 	[SerializeField] private Transform kitchenObjectHoldPoint;
 
@@ -28,8 +28,8 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
 	private void Start()
 	{
-		gameInput.OnInteractAction += GameInput_OnInteractAction;
-		gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+		GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+		GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
 	}
 
 	private void GameInput_OnInteractAction()
@@ -54,13 +54,15 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
 	private void Update()
 	{
+		if (!IsOwner) { return; }
+
 		HandleMovement();
 		HandleInteraction();
 	}
 
 	private void HandleMovement()
 	{
-		Vector2 inputVector = gameInput.GetInputVector2Normalized();
+		Vector2 inputVector = GameInput.Instance.GetInputVector2Normalized();
 		Vector3 moveDirection = new(inputVector.x, 0f, inputVector.y);
 
 		IsWalking = moveDirection != Vector3.zero;

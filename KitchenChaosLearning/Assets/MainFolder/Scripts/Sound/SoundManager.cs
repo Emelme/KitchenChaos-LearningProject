@@ -25,7 +25,7 @@ public class SoundManager : MonoBehaviour
 
 		CuttingCounter.OnAnyCut += CuttingCounter_OnAnyCut;
 
-		Player.Instance.OnObjectPicked += Player_OnObjectPicked;
+		//Player.Instance.OnObjectPicked += Player_OnObjectPicked;
 
 		Counter.OnObjectDropped += Counter_OnObjectDropped;
 
