@@ -30,9 +30,12 @@ public class PlateCounter : Counter
 
 		if (plateAmount < maxPlateAmount)
 		{
-			OnPlateSpawn?.Invoke();
+			if (GameManager.Instance.IsGamePlaying())
+			{
+				OnPlateSpawn?.Invoke();
 
-			plateAmount++;
+				plateAmount++; 
+			}
 
 			yield return StartCoroutine(StartSpawningPlate());
 		}

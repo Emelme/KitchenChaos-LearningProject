@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
-	private float waitingToStartTime = 1f;
 	private float countdownToStartTime = 3f;
 
 	private enum State
@@ -36,7 +35,16 @@ public class GameManager : MonoBehaviour
 	{
 		RecipeCountdownUI.OnRecipeCountdownExpired += RecipeCountdownUI_OnRecipeCountdownExpired;
 		GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
+		GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
 	}
+
+	private void GameInput_OnInteractAction()
+	{
+        if (state == State.WaitingToStart)
+        {
+			state = State.CountdownToStart;
+        }
+    }
 
 	private void GameInput_OnPauseAction()
 	{
@@ -69,14 +77,6 @@ public class GameManager : MonoBehaviour
 		switch (state)
 		{
 			case State.WaitingToStart:
-
-				waitingToStartTime -= Time.deltaTime;
-
-				if (waitingToStartTime <= 0f)
-				{
-					state = State.CountdownToStart;
-				}
-
 				break;
 			case State.CountdownToStart:
 

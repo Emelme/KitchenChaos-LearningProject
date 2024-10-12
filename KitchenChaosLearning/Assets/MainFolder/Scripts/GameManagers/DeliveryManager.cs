@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,7 +31,10 @@ public class DeliveryManager : MonoBehaviour
 		Instance = this;
 
 		waitingRecipeSOList = new List<RecipeSO>();
+	}
 
+	private void Start()
+	{
 		StartCoroutine(SpawnWaitingRecipe());
 	}
 
@@ -52,17 +56,14 @@ public class DeliveryManager : MonoBehaviour
 
 		isCoroutineRunning = false;
 
-		if (GameManager.Instance.IsGamePlaying())
+		if (GameManager.Instance.IsGamePlaying() && waitingRecipeSOList.Count < maxWaitingRecipeAmount)
 		{
 			RecipeSO recipeSO = recipeListSO.recipeSOList[Random.Range(0, recipeListSO.recipeSOList.Count)];
 			waitingRecipeSOList.Add(recipeSO);
 			OnWatingRecipeAdded?.Invoke(recipeSO); 
 		}
-
-		if (GameManager.Instance.IsGamePlaying() && waitingRecipeSOList.Count < maxWaitingRecipeAmount)
-		{
-			StartCoroutine(SpawnWaitingRecipe()); 
-		}
+		
+		StartCoroutine(SpawnWaitingRecipe());
 	}
 
 	public void HandleDelivery(PlateKitchenObject plate)

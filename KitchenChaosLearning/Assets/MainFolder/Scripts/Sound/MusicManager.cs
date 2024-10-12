@@ -8,6 +8,8 @@ public class MusicManager : MonoBehaviour
 
 	[SerializeField] private AudioSource audioSource;
 
+	[SerializeField] private float musicVolumeDivider = 2f;
+
 	private float volumeMultiplier;
 	private const string MUSIC_VOLUME_MULTIPLIER = "musicVolumeMultiplier";
 
@@ -17,7 +19,7 @@ public class MusicManager : MonoBehaviour
 
 		volumeMultiplier = PlayerPrefs.GetFloat(MUSIC_VOLUME_MULTIPLIER, 0.5f);
 
-		audioSource.volume = volumeMultiplier;
+		audioSource.volume = volumeMultiplier / musicVolumeDivider;
 	}
 
 	public void ChangeVolumeMultiplier()
@@ -32,7 +34,7 @@ public class MusicManager : MonoBehaviour
 		PlayerPrefs.SetFloat(MUSIC_VOLUME_MULTIPLIER, volumeMultiplier);
 		PlayerPrefs.Save();
 
-		audioSource.volume = volumeMultiplier;
+		audioSource.volume = volumeMultiplier / musicVolumeDivider;
 	}
 
 	public float GetVolumeMultiplierNormalized() { return Mathf.Round(volumeMultiplier * 10f); }

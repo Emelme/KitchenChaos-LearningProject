@@ -98,6 +98,7 @@ public class OptionsUI : MonoBehaviour
 	private void Rebind(GameInput.Binding binding)
 	{
 		ShowPressToRebindKey();
+
 		GameInput.Instance.RebindBinding(binding, () =>
 		{
 			HidePressToRebindKey();

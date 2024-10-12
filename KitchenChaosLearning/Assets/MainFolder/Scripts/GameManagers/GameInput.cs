@@ -13,6 +13,7 @@ public class GameInput : MonoBehaviour
 	public event Action OnInteractAction;
 	public event Action OnInteractAlternateAction;
 	public event Action OnPauseAction;
+	public event Action OnBindingRebind;
 
 	public enum Binding
 	{
@@ -130,6 +131,7 @@ public class GameInput : MonoBehaviour
 		{
 			playerInputAction.Player.Enable();
 			onActionRebound.Invoke();
+			OnBindingRebind?.Invoke();
 			PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, playerInputAction.SaveBindingOverridesAsJson());
 			PlayerPrefs.Save();
 		})
