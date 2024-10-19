@@ -20,7 +20,7 @@ public class PlayerSound : MonoBehaviour
 	{
 		while (true)
 		{
-			//if (Player.Instance.IsWalking)
+			if (Player.Instance.IsWalking)
 			{
 				audioSource.clip = footsteps[Random.Range(0, footsteps.Length)];
 				audioSource.volume = SoundManager.Instance.GetVolumeMultiplier();
